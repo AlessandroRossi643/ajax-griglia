@@ -1,8 +1,25 @@
-// Mi creo il template con cui andare a stampare la griglia in html
+// Version 2
 $(document).ready(function(){
-  var template_griglia=$('#template-griglia').html();
-  $('body').append(template_griglia);
+  // Vado a definire il numero di righe e colonne che mi serviranno per costruire la griglia
+  var righe=6;
+  var colonne=6;
 
+  // Mi creo il template con cui andare a stampare la griglia in html
+  var template_griglia=$('#template-griglia').html();
+  var template_function=Handlebars.compile(template_griglia);
+
+  // Richiamo la funzione per generare la griglia
+  generaGriglia(righe,colonne);
+
+  // Funzione con cui posso generare dato un numero di righe e di colonne una griglia
+  function generaGriglia(row,col){
+    for (var i = 0; i < col; i++) {
+      for (var j = 0; j < row; j++) {
+        // Ad ogni ciclo appendo sulla row un quadrato
+        $('.row').append(template_function);
+      }
+    }
+  }
 
   $('.quadrato').click(function(){
     // Variabile che mi permette di salvare il quadrato che ho cliccato
